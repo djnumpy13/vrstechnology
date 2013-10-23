@@ -1,4 +1,8 @@
-# Django settings for vrsproject project.
+# Django settings for testproject project.
+
+import os
+
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -83,7 +87,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '&$07errx5u%%&_=ikp+1wx0@4#l(+yliy9v#eidv$!z7px4k9g'
+SECRET_KEY = 'y_v^@&261wp%n=y%!e!3ek%qgx@h6zfs4%nuvt)sq=2t*k#v65'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -102,12 +106,13 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'vrsproject.urls'
+ROOT_URLCONF = 'testproject.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'vrsproject.wsgi.application'
+WSGI_APPLICATION = 'testproject.wsgi.application'
 
 TEMPLATE_DIRS = (
+    PROJECT_PATH + '/../templates/'
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -124,7 +129,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'vrsapp'
+    'newtestapp'
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
