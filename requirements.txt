@@ -1,4 +1,0 @@
-Django
-django-registration
-whoosh
-numpy
