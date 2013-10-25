@@ -1,8 +1,8 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+# from django.conf.urls import include
+
+from newtestapp.views import VrsRegister
 
 urlpatterns = patterns('',
     # Examples:
@@ -14,5 +14,9 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'newtestapp.views.home', name='home')
+
+    url(r'^$', 'newtestapp.views.home', name='home'),
+    url(r'^accounts/login/$', 'newtestapp.views.login', name='login'),
+    url(r'^accounts/register/$', VrsRegister.as_view(), name='register'),
 )
+
