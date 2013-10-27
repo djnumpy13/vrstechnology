@@ -8,23 +8,54 @@
 <div>THIS IS THE BASE VIDEO PAGE!<div>
 <a href="/accounts/logout/">Logout</a>
 
+<br><br><br>
 
-<div id="myPublisherDiv"></div>
+<div id="ChoiceVrsVideo"></div>
 
 <script type="text/javascript">
     var apiKey = "44333002";
     var sessionId = "2_MX40NDMzMzAwMn5-U2F0IE9jdCAyNiAxODozNzoyMCBQRFQgMjAxM34wLjQ3Nzk0NTJ-";
     var token = "T1==cGFydG5lcl9pZD00NDMzMzAwMiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz04ZDQ5ZTAyMWQ2Yjk1OThmOTQ5YzU0NTI5OThmN2ZkN2FjZjNjNzYzOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9Ml9NWDQwTkRNek16QXdNbjUtVTJGMElFOWpkQ0F5TmlBeE9Eb3pOem95TUNCUVJGUWdNakF4TTM0d0xqUTNOemswTlRKLSZjcmVhdGVfdGltZT0xMzgyODM3ODQxJm5vbmNlPTAuNjM3NzQ4NDU5NDk1ODMzNyZleHBpcmVfdGltZT0xMzgyOTI0MjQxJmNvbm5lY3Rpb25fZGF0YT0=";
+    var videoprops = {width: 640, height: 480, mirror: false, name: "ChoiceVrs Video!"};
 
-    // Initialize session, set up event listeners, and connect
-    var session = TB.initSession(sessionId);
-    session.addEventListener('sessionConnected', sessionConnectedHandler);
-    session.connect(apiKey, token);
-          
-    function sessionConnectedHandler(event) {
-        var publisher = TB.initPublisher(apiKey, 'myPublisherDiv');
+    TB.setLogLevel(TB.DEBUG)
+    TB.log("sending test message to logger")
+
+    function sessionConnectedHandler (event) {
+        var publisher = TB.initPublisher(apiKey, 'ChoiceVrsVideo', videoprops);
         session.publish(publisher);
+        subscribeToStreams(event.streams);
     }
+
+    function subscribeToStreams(streams) {
+        for (var i = 0; i < streams.length; i++) {
+            var stream = streams[i];
+            if (stream.connection.connectionId != session.connection.connectionId) {
+                session.subscribe(stream, videoprops);
+            }
+        }
+    }
+
+    function streamCreatedHandler(event) {
+        subscribeToStreams(event.streams);
+    }
+
+    supported = TB.checkSystemRequirements()
+
+    if (supported == 1) {
+        var session = TB.initSession(sessionId);
+        session.connect(apiKey, token);
+        session.addEventListener("sessionConnected", sessionConnectedHandler);
+        session.addEventListener("streamCreated", streamCreatedHandler);
+    }
+    else {
+        novideodiv = document.getElementById('ChoiceVrsVideo');
+        novideodiv.textContent = "unfortuantely video not supported"
+        TB.ugradeSystemRequirements()
+    }
+
 </script>
+
+
 
 {% endblock %}
