@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block headerscripts %}
+<script src='https://swww.tokbox.com/webrtc/v2.0/js/TB.min.js'></script>
+{% endblock %}
+
+{% block content %}
+<div>THIS IS THE BASE VIDEO PAGE!<div>
+<a href="/accounts/logout/">Logout</a>
+
+
+<div id="myPublisherDiv"></div>
+
+<script type="text/javascript">
+    var apiKey = "44333002";
+    var sessionId = "2_MX40NDMzMzAwMn5-U2F0IE9jdCAyNiAxODozNzoyMCBQRFQgMjAxM34wLjQ3Nzk0NTJ-";
+    var token = "T1==cGFydG5lcl9pZD00NDMzMzAwMiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz04ZDQ5ZTAyMWQ2Yjk1OThmOTQ5YzU0NTI5OThmN2ZkN2FjZjNjNzYzOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9Ml9NWDQwTkRNek16QXdNbjUtVTJGMElFOWpkQ0F5TmlBeE9Eb3pOem95TUNCUVJGUWdNakF4TTM0d0xqUTNOemswTlRKLSZjcmVhdGVfdGltZT0xMzgyODM3ODQxJm5vbmNlPTAuNjM3NzQ4NDU5NDk1ODMzNyZleHBpcmVfdGltZT0xMzgyOTI0MjQxJmNvbm5lY3Rpb25fZGF0YT0=";
+
+    // Initialize session, set up event listeners, and connect
+    var session = TB.initSession(sessionId);
+    session.addEventListener('sessionConnected', sessionConnectedHandler);
+    session.connect(apiKey, token);
+          
+    function sessionConnectedHandler(event) {
+        var publisher = TB.initPublisher(apiKey, 'myPublisherDiv');
+        session.publish(publisher);
+    }
+</script>
+
+{% endblock %}

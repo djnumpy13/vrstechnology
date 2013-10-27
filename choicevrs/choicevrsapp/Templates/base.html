@@ -1,0 +1,24 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <title>{{ title }}</title>
+    {% block headerscripts %}{% endblock%}
+</head>
+
+<body>
+    <div id="sidebar">
+        <li><a href="/">Home</a></li>
+        <li><a href="/accounts/login/">Login</a></li>
+        <li><a href="/accounts/register/">Register</a></li>
+        <li><a href="/about/">About</a></li>
+    </div>
+    <br>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </table>
+    </div>
+</body>
+</html>
+{% endspaceless %}
