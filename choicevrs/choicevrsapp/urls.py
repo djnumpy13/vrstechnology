@@ -9,4 +9,6 @@ urlpatterns = patterns('',
     url(r'^accounts/logout/$', Logout.as_view(), name='logout'),
     url(r'^accounts/register/$', Register.as_view(), name='register'),
     url(r'^choicevrs/video/$', Video.as_view(), name='register'),
+
+    url(r'^debug/$', Debug.as_view(), name='debug'),
 )

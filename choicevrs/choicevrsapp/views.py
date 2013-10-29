@@ -21,6 +21,11 @@ class About(View):
         params = {}
         return render_to_response('about.html', params)
 
+class Debug(View):
+    def get(self, request):
+        params = {}
+        return render_to_response('debug.html', params)
+
 class Video(View):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):

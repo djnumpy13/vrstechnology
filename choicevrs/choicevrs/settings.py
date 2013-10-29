@@ -12,6 +12,8 @@ ADMINS = (
     ('Phil Ethier', 'philip.ethier@gmail.com'),
 )
 
+AUTH_PROFILE_MODULE = 'choicevrsapp.UserProfile'
+
 MANAGERS = ADMINS
 '''
 DATABASES = {
