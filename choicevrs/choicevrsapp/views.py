@@ -49,7 +49,6 @@ class Login(View):
 
 class Logout(View):
     def get(self, request):
-        print 'trying to log out'
         auth.logout(request)
         params = {}
         return redirect('/', params)
