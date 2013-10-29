@@ -10,6 +10,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
+from .HelperFunctions import *
+
 
 class Home(View):
     def get(self, request):
@@ -33,6 +35,9 @@ class Video(View):
 
     def get(self, request):
         params = {}
+        location = getLocationInfo(request.META.get('REMOTE_ADDR'))
+        print location
+        params['location'] = location
         return render_to_response('video.html', params)
 
 class Login(View):
