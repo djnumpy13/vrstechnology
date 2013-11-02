@@ -26,7 +26,7 @@ class About(View):
 class Debug(View):
     def get(self, request):
         params = {}
-        return render_to_response('debug.html', params)
+        return render_to_response('test.html', params)
 
 class Video(View):
     @method_decorator(login_required)
@@ -36,7 +36,6 @@ class Video(View):
     def get(self, request):
         params = {}
         location = getLocationInfo(request.META.get('REMOTE_ADDR'))
-        print location
         params['location'] = location
         return render_to_response('video.html', params)
 
@@ -78,7 +77,6 @@ class Register(View):
             form.save()
             return redirect('/choicevrs/video/')
         else:
-            print 'is not valid!'
             return self.get(request)
 
 

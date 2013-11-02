@@ -30,10 +30,11 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return "%s's user profile" % self.user
-
+'''
 class CallRelayEvent(models.Model):
     #base information about the users, translators, and the video.
     call_type = models.CharField(max_length=1, choices=CALL_TYPES)
+    
     base_user = models.ForeignKey(UserProfile)
     user_two = models.ForeignKey(UserProfile, null=True) # optional user stub for 3-way
     translator = models.ForeignKey(UserProfile)
@@ -68,3 +69,4 @@ class VideoSession(models.Model):
     last_used = models.DateTimeField(null=True)
     times_used = models.PositiveIntegerField(default=0)
     error_count = models.PositiveIntegerField(default=0)
+'''

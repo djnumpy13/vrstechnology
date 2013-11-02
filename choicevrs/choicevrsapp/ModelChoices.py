@@ -62,3 +62,7 @@ ACCOUNT_TYPES = (
     ('U', 'ChoiceUser'),
     ('T', 'ChoiceTranslator'),
 )
+
+CALL_TYPES = (
+    ('S', 'ChoiceVRS'),
+)
